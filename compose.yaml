@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  #Это конфигурация Docker Compose для запуска сервера администрирования Authentik
+  authentik-worker:
+    container_name: authentik-worker
+    command: worker
+    deploy:
+      restart_policy:
+        condition: always
+        delay: 5s
+    env_file: authentik.env
+    image: ghcr.io/goauthentik/server:latest
+    volumes:
+      - "./authentik/media:/media"
+      - "./authentik/templates:/templates"
+
+networks:
+  default:
+    external: true
+    name: $NETWORK
