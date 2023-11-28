@@ -11,9 +11,10 @@ services:
         delay: 5s
     env_file: authentik.env
     image: ghcr.io/goauthentik/server:latest
+    user: root
     volumes:
-      - "./authentik/media:/media"
-      - "./authentik/templates:/templates"
+      - "/mnt/docker-volumes/auth/src/media:/media"
+      - "/mnt/docker-volumes/auth/src/templates:/templates"
 
 networks:
   default:
